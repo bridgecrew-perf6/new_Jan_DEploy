@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: djangoapp
+ #  name: java-controller
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: djangoapp
+    spec:
+      containers:
+      - image: srinaths119/django:1.0
+        name: djangoapp
+        ports:
+        - name: djangoapp
+          containerPort: 8000  
+---
+# Node Port Service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: djangoapp
+  name: djangoapp
+spec:
+  type: NodePort
+  ports:
+    - port: 8000
+      targetPort: 8000
+  selector:
+    name: djangoapp
