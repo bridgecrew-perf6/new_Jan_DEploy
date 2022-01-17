@@ -4,7 +4,7 @@ kind: ReplicationController
 metadata:
   labels:
     name: djangoapp
- #  name: java-controller
+  name: django-controller
 spec:
   replicas: 2
   template:
