@@ -25,7 +25,7 @@ metadata:
   namespace: default
 spec:
   containers:
-  - imagePullPolicy: IfNotPresent
+  - imagePullPolicy: srinaths119/django:*
     ports:
     - containerPort: 8000
       name: portname.0
