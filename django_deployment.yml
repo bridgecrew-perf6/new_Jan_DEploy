@@ -4,7 +4,7 @@ kind: Service
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: service.name.0
+  name: service.name.4
   namespace: default
 spec:
   ports:
@@ -13,21 +13,18 @@ spec:
     protocol: tcp
     targetPort: 8000
   selector:
-    app: demo.93
+    app: demo.25
   type: NodePort
 
-#This is Pod Configuration Kube definition
+
+#This is Deployment Configuration Kube definition
 ---
-kind: Pod
+apiVersion: apps/v1beta1
+kind: Deployment
 metadata:
   labels:
-    app: demo.93
+    app: demo.25
+  name: deployment.name.99
   namespace: default
 spec:
-  containers:
-  - imagePullPolicy: srinaths119/django:*
-    ports:
-    - containerPort: 8000
-      name: portname.0
-      protocol: tcp
-  terminationGracePeriodSeconds: 0
+  replicas: 2
