@@ -2,30 +2,32 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: django
+  annotations:
+    generated.by: 8gwifi.org
+  name: service.name.0
+  namespace: default
 spec:
   ports:
-  - port: 80
+  - name: nameme_01
+    port: 8000
+    protocol: tcp
     targetPort: 8000
-    protocol: TCP
-  type: NodePort
   selector:
-    service: django
+    app: demo.93
+  type: NodePort
+
+#This is Pod Configuration Kube definition
 ---
-apiVersion: extensions/v1beta1
-kind: Deployment
+kind: Pod
 metadata:
-  name: django
+  labels:
+    app: demo.93
+  namespace: default
 spec:
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        service: django
-    spec:
-      containers:
-      - name: django
-        image: srinaths119/django:${buildNumber}
-        ports:
-        - name: django
-          containerPort: 8000
+  containers:
+  - imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 8000
+      name: portname.0
+      protocol: tcp
+  terminationGracePeriodSeconds: 0
